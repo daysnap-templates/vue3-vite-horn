@@ -7,9 +7,15 @@
       "@/*": ["./src/*"]
     },
     "types": [
+      "node",
       "unplugin-vue-define-options/macros-global"
     ],
     "ignoreDeprecations": "5.0",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
   },
 
   "references": [
