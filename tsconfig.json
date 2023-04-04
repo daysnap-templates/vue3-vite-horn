@@ -6,7 +6,10 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "ignoreDeprecations": "5.0"
+    "types": [
+      "unplugin-vue-define-options/macros-global"
+    ],
+    "ignoreDeprecations": "5.0",
   },
 
   "references": [

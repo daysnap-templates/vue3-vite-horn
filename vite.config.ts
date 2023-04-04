@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
-import DefineOptions from 'unplugin-vue-define-options/dist/vite'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 import postCssPxToRem from 'postcss-pxtorem'
 
 // https://vitejs.dev/config/
