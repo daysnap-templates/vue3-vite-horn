@@ -14,6 +14,7 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   globals: {
+    eruda: true,
     defineOptions: 'readonly',
   },
   rules: {

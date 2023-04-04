@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@daysnap/define-sass": "^0.0.13",
-    "@daysnap/utils": "^0.0.45",
+    "@daysnap/utils": "^0.0.46",
     "amfe-flexible": "^2.2.1",
     "pinia": "^2.0.32",
     "vant": "^4.1.2",
