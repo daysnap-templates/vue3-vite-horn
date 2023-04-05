@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host --force --port 5173",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -12,7 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@daysnap/define-sass": "^0.0.13",
+    "@daysnap/define-sass": "^0.0.14",
     "@daysnap/utils": "^0.0.47",
     "amfe-flexible": "^2.2.1",
     "pinia": "^2.0.32",

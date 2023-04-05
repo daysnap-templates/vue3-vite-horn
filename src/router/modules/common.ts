@@ -8,4 +8,4 @@ export default [
   },
   // 404
   { path: '/:catchAll(.*)*', name: '404', redirect: '/' },
-] as Array<RouteRecordRaw>
+] as RouteRecordRaw[]
