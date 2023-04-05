@@ -20,5 +20,8 @@ module.exports = {
   rules: {
     // 关闭名称校验
     'vue/multi-word-component-names': 'off',
+
+    // https://github.com/antfu/unplugin-auto-import/issues/92
+    'no-undef': 'off',
   },
 }
