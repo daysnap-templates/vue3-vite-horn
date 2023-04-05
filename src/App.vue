@@ -1,15 +1,20 @@
 <template>
-  <RouterView />
-  <p>1</p>
+  <router-view v-slot="{ Component }">
+    <transition :name="transitionName">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script setup lang="ts">
-defineOptions({
-  name: 'xxx',
+import { useTransitionNameByPosition } from '@daysnap/horn-use'
+const transitionName = useTransitionNameByPosition({
+  enterClass: 'slide-left',
+  leaveClass: 'slide-right',
 })
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/global';
-@import '@/assets/scss/define';
+@import '@/assets/scss/global.scss';
+@import '@/assets/scss/define.scss';
 </style>

@@ -1,1 +1,9 @@
-@import "@daysnap/define-sass"
+@import "@daysnap/define-sass";
+
+@function j($px) {
+  @if (unitless($px)) {
+    @return $px * 1px;
+  } @else {
+    @return $px;
+  }
+}

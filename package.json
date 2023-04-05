@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@daysnap/define-sass": "^0.0.14",
+    "@daysnap/horn-use": "^0.0.6",
     "@daysnap/utils": "^0.0.47",
     "amfe-flexible": "^2.2.1",
     "pinia": "^2.0.32",

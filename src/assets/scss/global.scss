@@ -1,2 +1,8 @@
 @import '@daysnap/define-sass/reset';
-@import 'var';
+@import 'var.scss';
+@import 'transition.scss';
+@import 'define.scss';
+
+#app{
+  font-size: j(16);
+}
