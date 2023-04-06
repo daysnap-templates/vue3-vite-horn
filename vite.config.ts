@@ -20,7 +20,10 @@ export default defineConfig({
     vueJsx(),
 
     // https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
-    DefineOptions(),
+    DefineOptions({
+      // include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
+      // exclude: [],
+    }),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
@@ -32,6 +35,7 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-vue-components
     Components({
       dts: 'typings/components.d.ts',
+      extensions: ['ts', 'jsx', 'tsx', 'js', 'vue'],
       resolvers: [
         // https://vant-ui.github.io/vant/#/zh-CN/quickstart
         VantResolver(),
@@ -42,6 +46,8 @@ export default defineConfig({
         //   }
         // },
       ],
+      // include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
+      // exclude: [],
     }),
   ],
   css: {
