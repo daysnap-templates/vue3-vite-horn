@@ -7,6 +7,12 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import postCssPxToRem from 'postcss-pxtorem'
+import { } from '@daysnap/utils'
+
+function kebabCase(key: string) {
+  const result = key.replace(/([A-Z])/g, ' $1').trim()
+  return result.split(' ').join('-').toLowerCase()
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,8 +27,8 @@ export default defineConfig({
 
     // https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
     DefineOptions({
-      // include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
-      // exclude: [],
+      include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
+      exclude: [],
     }),
 
     // https://github.com/antfu/unplugin-auto-import
@@ -40,11 +46,15 @@ export default defineConfig({
         // https://vant-ui.github.io/vant/#/zh-CN/quickstart
         VantResolver(),
 
-        // (componentName) => {
-        //   if (componentName.startsWith('Hor')) {
-        //     return { name: componentName, from: '@daysnap/horn-ui' }
-        //   }
-        // },
+        (componentName) => {
+          if (componentName.startsWith('Hor')) {
+            return {
+              name: componentName,
+              from: '@daysnap/horn-ui',
+              sideEffects: `@daysnap/horn-ui/src/${kebabCase(componentName)}/style/index`,
+            }
+          }
+        },
       ],
       // include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
       // exclude: [],
