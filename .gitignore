@@ -28,5 +28,5 @@ coverage
 *.sw?
 
 # typings auto gen
-.typings/auto-imports.d.ts
-.typings/components.d.ts
+typings/auto-imports.d.ts
+typings/components.d.ts
