@@ -36,11 +36,11 @@ export default defineConfig({
         // https://vant-ui.github.io/vant/#/zh-CN/quickstart
         VantResolver(),
 
-        (componentName) => {
-          if (componentName.startsWith('Hor')) {
-            return { name: componentName, from: '@daysnap/horn-ui' }
-          }
-        },
+        // (componentName) => {
+        //   if (componentName.startsWith('Hor')) {
+        //     return { name: componentName, from: '@daysnap/horn-ui' }
+        //   }
+        // },
       ],
     }),
   ],
