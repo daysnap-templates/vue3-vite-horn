@@ -2,6 +2,7 @@
   <div class="c-view-wrap">
     <p>12</p>
   </div>
+  <hor-cell></hor-cell>
 </template>
 
 <script lang="ts" setup></script>

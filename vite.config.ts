@@ -22,17 +22,26 @@ export default defineConfig({
     // https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
     DefineOptions(),
 
-    // https://github.com/antfu/unplugin-vue-components
-    Components({
-      dts: 'typings/components.d.ts',
-      resolvers: [VantResolver()],
-    }),
-
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: ['vue', 'vue-router'],
       dts: 'typings/auto-imports.d.ts',
       resolvers: [VantResolver()],
+    }),
+
+    // https://github.com/antfu/unplugin-vue-components
+    Components({
+      dts: 'typings/components.d.ts',
+      resolvers: [
+        // https://vant-ui.github.io/vant/#/zh-CN/quickstart
+        VantResolver(),
+
+        (componentName) => {
+          if (componentName.startsWith('Hor')) {
+            return { name: componentName, from: '@daysnap/horn-ui' }
+          }
+        },
+      ],
     }),
   ],
   css: {
