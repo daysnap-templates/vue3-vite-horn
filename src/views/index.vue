@@ -1,5 +1,5 @@
 <template>
-  <div class="view-wrap">
+  <div class="c-view-wrap main-view">
     <router-view v-slot="{ Component }">
       <keep-alive>
         <component :is="Component" />
@@ -34,4 +34,16 @@ const current = ref(computedTabbars.value.findIndex((item) => item.path === rout
 
 <style lang="scss" scoped>
 @import '@/assets/scss/define.scss';
+.main-view {
+  @extend %df;
+  @extend %fdc;
+  height: 100vh;
+
+  > .c-view-wrap {
+    @extend %df1;
+    min-height: auto;
+    height: 500px;
+    background-color: red;
+  }
+}
 </style>

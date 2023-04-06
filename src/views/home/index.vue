@@ -1,5 +1,5 @@
 <template>
-  <div class="home-view">
+  <div class="c-view-wrap">
     <p>12</p>
   </div>
 </template>
@@ -8,12 +8,7 @@
 
 <style lang="scss" scoped>
 @import '@/assets/scss/define.scss';
-.home-view {
-  width: 375px;
-  background-color: red;
-  margin: 0 auto;
-}
-p {
-  font-size: j(30);
+.c-view-wrap {
+  // background-color: red;
 }
 </style>

@@ -4,6 +4,16 @@
 @import 'field.scss';
 @import 'define.scss';
 
+html,body{
+  @extend %w100;
+}
+
 #app{
   font-size: j(16);
+  min-height: 100vh;
 }
+
+.c-view-wrap1{
+  min-height: 100vh;
+}
+
