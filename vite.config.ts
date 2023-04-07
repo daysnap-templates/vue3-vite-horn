@@ -52,8 +52,8 @@ export default defineConfig({
           }
         },
       ],
-      // include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
-      // exclude: [],
+      include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
+      exclude: [],
     }),
   ],
   css: {

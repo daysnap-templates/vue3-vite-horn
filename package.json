@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@daysnap/define-sass": "^0.0.15",
+    "@daysnap/define-sass": "^0.0.16",
     "@daysnap/horn-jssdk": "^0.0.11",
     "@daysnap/horn-ui": "^0.0.18",
     "@daysnap/horn-use": "^0.0.14",
