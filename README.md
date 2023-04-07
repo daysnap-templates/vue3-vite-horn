@@ -24,6 +24,13 @@ Option 'importsNotUsedAsValues' is deprecated and will stop functioning in TypeS
 ```
 
 
+有时候包没及时更新
+
+```bash
+npm install --repository=https://registry.npmjs.org
+```
+
+
 ## 原来的备注
 
 This template should help get you started developing with Vue 3 in Vite.

@@ -7,12 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import postCssPxToRem from 'postcss-pxtorem'
-import { } from '@daysnap/utils'
-
-function kebabCase(key: string) {
-  const result = key.replace(/([A-Z])/g, ' $1').trim()
-  return result.split(' ').join('-').toLowerCase()
-}
+import { kebabCase } from '@daysnap/utils'
 
 // https://vitejs.dev/config/
 export default defineConfig({
