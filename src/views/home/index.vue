@@ -6,9 +6,7 @@
   <hor-icon name="" />
 </template>
 
-<script lang="ts" setup>
-import { HorCell, HorIcon } from '@daysnap/horn-ui'
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 // @import '@/assets/scss/define.scss';
