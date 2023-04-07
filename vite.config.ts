@@ -5,7 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
-import DefineOptions from 'unplugin-vue-define-options/vite'
+// import DefineOptions from 'unplugin-vue-define-options/vite'
 import postCssPxToRem from 'postcss-pxtorem'
 import { kebabCase } from '@daysnap/utils'
 
@@ -20,11 +20,12 @@ export default defineConfig({
     vue(),
     vueJsx(),
 
+    // hor-icon  => hor-cell def
     // https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
-    DefineOptions({
-      include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
-      exclude: [],
-    }),
+    // DefineOptions({
+    // include: [/\.vue$/, /\.vue\?vue/, /[/\\]node_modules[/\\][@\\]daysnap[/\\]/],
+    // exclude: [],
+    // }),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({

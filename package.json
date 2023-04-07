@@ -15,7 +15,7 @@
   "dependencies": {
     "@daysnap/define-sass": "^0.0.15",
     "@daysnap/horn-jssdk": "^0.0.11",
-    "@daysnap/horn-ui": "^0.0.17",
+    "@daysnap/horn-ui": "^0.0.18",
     "@daysnap/horn-use": "^0.0.14",
     "@daysnap/utils": "^0.0.48",
     "amfe-flexible": "^2.2.1",
