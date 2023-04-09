@@ -30,3 +30,6 @@ coverage
 # typings auto gen
 typings/auto-imports.d.ts
 typings/components.d.ts
+
+# lock
+package-lock.json
