@@ -1,5 +1,6 @@
 <template>
   <hor-view>
+    <van-nav-bar />
     <hor-icon name="hor-version" />
   </hor-view>
 </template>
