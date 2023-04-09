@@ -17,7 +17,8 @@ export function setupGuards(router: Router) {
     if (!userinfo && requiresAuth === 1) {
       return {
         path: '/login',
-        query: { redirect: to.fullPath },
+        // 这里暂时不用 得看业务需求
+        // query: { redirect: to.fullPath },
       }
     }
   })

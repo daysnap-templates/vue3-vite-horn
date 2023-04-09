@@ -37,13 +37,5 @@ const current = ref(computedTabbars.value.findIndex((item) => item.path === rout
 .main-view {
   @extend %df;
   @extend %fdc;
-  height: 100vh;
-
-  > .c-view-wrap {
-    @extend %df1;
-    min-height: auto;
-    height: 500px;
-    background-color: red;
-  }
 }
 </style>

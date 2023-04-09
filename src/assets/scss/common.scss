@@ -6,8 +6,18 @@ html,body{
 #app{
   font-size: j(16);
   min-height: 100vh;
+  height: 100vh;
 }
 
 .c-view-wrap{
-  min-height: 100vh;
+  @extend %h100;
+}
+
+.c-button{
+  &.van-button{
+    @extend %db;
+    @extend %ma;
+    width: j(335);
+    margin-top: j(60);
+  }
 }
