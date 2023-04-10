@@ -1,4 +1,4 @@
 export * from './constants'
-export * from './exclude-message'
+export * from './excludeMessage'
 export * from './storage'
-export * from './with-loading'
+export * from './withLoading'

@@ -1,9 +1,9 @@
 import type { Plugin } from 'vue'
-import { createPinia } from 'pinia'
+import { pinia } from '@/stores'
 
 // pinia docs https://pinia.vuejs.org/zh/
 export default {
   install(app) {
-    app.use(createPinia())
+    app.use(pinia)
   },
 } as Plugin
