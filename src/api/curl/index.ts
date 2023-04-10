@@ -7,7 +7,7 @@ const instance = {
   native: axiosInstance,
 }
 
-export default function curl<T = any>(
+export function curl<T = any>(
   url: string,
   data: Record<string, any> = {},
   options: CurlOptions = {},
@@ -26,4 +26,5 @@ export default function curl<T = any>(
   options[method === 'get' ? 'params' : 'data'] = data
 
   // return instance[adapter]
+  return null as any
 }
