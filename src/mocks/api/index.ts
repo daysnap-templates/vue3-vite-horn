@@ -1,6 +1,7 @@
 import { registerAdapter } from '@/api'
 import { isFunction } from '@daysnap/utils'
 
+// 注册 api mock 适配器
 registerAdapter('mock', async (config) => {
   const { headers, mockUrl } = config as any
   try {

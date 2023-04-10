@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { doUserLogin } from '@/api'
+import { withLoading } from '@/utils/withLoading'
 import type { MetaDataObject } from '@daysnap/banana'
 import { banana } from '@daysnap/banana'
 
@@ -32,7 +33,7 @@ const objInput = reactive<MetaDataObject>({
 const router = useRouter()
 const handleSubmit = async () => {
   const options = banana.validate(objInput)
-  const userinfo = await doUserLogin(options)
+  const userinfo = await doUserLogin(options, { message: 'xxx' })
   // router.back()
 }
 </script>

@@ -4,8 +4,8 @@ import type { Userinfo } from '@/types'
 
 // 登录
 export const doUserLogin = withLoading((data: { username: string; password: string }) => {
-  return curl<Userinfo>('api/user/section', data, { method: 'post', adapter: 'mock' })
-})
+  return curl<Userinfo>('api/user/section', data, { method: 'post' })
+}, false)
 
 // 获取用户信息
 export const reqUserInfo = () => {
