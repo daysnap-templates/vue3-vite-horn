@@ -18,6 +18,5 @@ export function curl<T = any>(
   options.url = url
   options[method === 'get' ? 'params' : 'data'] = data
 
-  // return instance[adapter]
-  return null as any
+  return instance(options)
 }

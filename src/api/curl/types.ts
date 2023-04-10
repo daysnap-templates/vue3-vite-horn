@@ -6,6 +6,4 @@ export interface ApiResponse<T = any> {
   data: T
 }
 
-export type CurlOptions = AxiosRequestConfig & {
-  adapter?: 'axios' | 'native'
-}
+export type CurlOptions = AxiosRequestConfig
