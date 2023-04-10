@@ -6,4 +6,8 @@ export interface ApiResponse<T = any> {
   data: T
 }
 
-export type CurlOptions = AxiosRequestConfig
+export type CurlOptions = Omit<AxiosRequestConfig, 'adapter'> & {
+  adapter?: AdapterName
+}
+
+export type AdapterName = 'native' | 'mock' | 'xhr'
