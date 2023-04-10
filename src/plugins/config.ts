@@ -1,4 +1,4 @@
-import { excludeMessage } from '@/utils'
+import { __DEV__, excludeMessage } from '@/utils'
 import { formatMessage } from '@daysnap/utils'
 import { closeToast, showToast } from 'vant'
 import type { Plugin, AppConfig } from 'vue'
@@ -14,7 +14,7 @@ const errorHandler: AppConfig['errorHandler'] = (err) => {
   }
 
   // development env 需要抛出异常 方便查看问题
-  if (process.env.NODE_ENV === 'development') {
+  if (__DEV__) {
     throw err
   }
 }

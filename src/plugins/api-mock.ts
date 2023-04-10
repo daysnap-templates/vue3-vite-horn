@@ -1,3 +1,5 @@
-if (process.env.NODE_ENV === 'development') {
+import { __DEV__ } from '@/utils'
+
+if (__DEV__) {
   import('@/mocks/api')
 }

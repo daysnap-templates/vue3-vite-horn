@@ -22,7 +22,7 @@ export function getAdapter(adapter: string) {
   if (!__DEV__) {
     // 生产环境 尽量走 原生
     if (!['xhr', 'native'].includes(adapter)) {
-      adapter = 'native'
+      // adapter = 'native'
     }
   }
   if (!isApp) {

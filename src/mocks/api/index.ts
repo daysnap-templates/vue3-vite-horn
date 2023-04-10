@@ -3,7 +3,10 @@ import { registerAdapter } from '@/api'
 registerAdapter('mock', async (config) => {
   const { headers, mockUrl } = config as any
   try {
-    const { default: data } = await import(`./modules/${mockUrl.replace(/\//g, '_')}.json`)
+    // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
+    const { default: data } = await import(
+      /* @vite-ignore */ `./modules/${mockUrl.replace(/\//g, '_')}.json`
+    )
     return {
       data,
       status: 200,
