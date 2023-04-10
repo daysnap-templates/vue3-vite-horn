@@ -1,8 +1,8 @@
 import { isBoolean } from '@daysnap/utils'
 import { showLoadingToast, type ToastOptions } from 'vant'
 
-export function withLoading<T extends (...args: any[]) => Promise<any>>(fn: T) {
-  return async (params: Parameters<T>, options: boolean | string | ToastOptions = true) => {
+export function withLoading<T extends (params: any) => Promise<any>>(fn: T) {
+  return async (params: Parameters<T>[0], options: boolean | string | ToastOptions = true) => {
     if (isBoolean(options) && options) {
       options = { duration: 0 }
     }

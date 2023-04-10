@@ -1,5 +1,6 @@
-import { baseURL } from './config'
+import type { InternalAxiosRequestConfig } from 'axios'
 
-export const log = ({ url, method }: { url: string; method: string }, ...args: any[]) => {
+export const log = (config: InternalAxiosRequestConfig, ...args: any[]) => {
+  const { url = '', baseURL = '', method } = config
   console.log(`${url?.startsWith(`http`) ? url : baseURL + url}`, `[${method}]`, ...args)
 }
