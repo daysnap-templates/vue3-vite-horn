@@ -32,7 +32,7 @@ const objInput = reactive<MetaDataObject>({
 const router = useRouter()
 const handleSubmit = async () => {
   const options = banana.validate(objInput)
-  await doUserLogin(options)
+  const userinfo = await doUserLogin(options)
   // router.back()
 }
 </script>

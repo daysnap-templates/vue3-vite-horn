@@ -1,8 +1,17 @@
 import { isBoolean } from '@daysnap/utils'
 import { showLoadingToast, type ToastOptions } from 'vant'
 
-export function withLoading<T extends (params: any) => Promise<any>>(fn: T) {
-  return async (params: Parameters<T>[0], options: boolean | string | ToastOptions = true) => {
+export type WithLoadingOptions = boolean | string | ToastOptions
+
+// 让一个异步函数具有 loading 的效果
+export function withLoading<T extends (params: any) => Promise<any>>(
+  fn: T,
+  opt: WithLoadingOptions = true,
+) {
+  return async (
+    params: Parameters<T>[0],
+    options: WithLoadingOptions = opt,
+  ): Promise<ReturnType<T>> => {
     if (isBoolean(options) && options) {
       options = { duration: 0 }
     }

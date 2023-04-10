@@ -1,9 +1,11 @@
+import { withLoading } from '@/utils'
 import { curl } from './curl'
+import type { Userinfo } from '@/types'
 
 // 登录
-export const doUserLogin = (data: { username: string; password: string }) => {
-  return curl('api/user/section', data, { method: 'post', adapter: 'mock' })
-}
+export const doUserLogin = withLoading((data: { username: string; password: string }) => {
+  return curl<Userinfo>('api/user/section', data, { method: 'post', adapter: 'mock' })
+})
 
 // 获取用户信息
 export const reqUserInfo = () => {

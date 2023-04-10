@@ -1,12 +1,19 @@
 import { registerAdapter } from '@/api'
+import { isFunction } from '@daysnap/utils'
 
 registerAdapter('mock', async (config) => {
   const { headers, mockUrl } = config as any
   try {
     // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
-    const { default: data } = await import(
-      /* @vite-ignore */ `./modules/${mockUrl.replace(/\//g, '_')}.json`
-    )
+    const modules = import.meta.glob(`./modules/**/*.{json,ts}`)
+    const key = `./modules/${mockUrl.replace(/\//g, '_')}`
+
+    const module = modules[`${key}.ts`] || modules[`${key}.json`]
+    let { default: data } = (await module()) as any
+    if (isFunction(data)) {
+      data = data(config)
+    }
+
     return {
       data,
       status: 200,
