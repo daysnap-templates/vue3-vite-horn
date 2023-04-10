@@ -16,13 +16,13 @@ import { banana } from '@daysnap/banana'
 
 const objInput = reactive<MetaDataObject>({
   username: {
-    value: '',
+    value: '1',
     label: '账号',
     required: true,
     rules: [{ required: true, message: '请输入账号' }],
   },
   password: {
-    value: '',
+    value: '2',
     label: '密码',
     required: true,
     rules: [{ required: true, message: '请输入账号' }],
@@ -33,6 +33,6 @@ const router = useRouter()
 const handleSubmit = async () => {
   const options = banana.validate(objInput)
   await doUserLogin(options)
-  router.back()
+  // router.back()
 }
 </script>

@@ -16,7 +16,7 @@
     "@daysnap/banana": "^0.0.9",
     "@daysnap/define-sass": "^0.0.17",
     "@daysnap/horn-jssdk": "^0.0.11",
-    "@daysnap/horn-ui": "^0.0.22",
+    "@daysnap/horn-ui": "^0.0.24",
     "@daysnap/horn-use": "^0.0.15",
     "@daysnap/utils": "^0.0.49",
     "amfe-flexible": "^2.2.1",

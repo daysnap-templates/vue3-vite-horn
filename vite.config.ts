@@ -10,6 +10,9 @@ import { kebabCase } from '@daysnap/utils'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    //
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

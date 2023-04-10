@@ -8,6 +8,7 @@ export interface ApiResponse<T = any> {
 
 export type CurlOptions = Omit<AxiosRequestConfig, 'adapter'> & {
   adapter?: AdapterName
+  mockUrl?: string
 }
 
 export type AdapterName = 'native' | 'mock' | 'xhr'
