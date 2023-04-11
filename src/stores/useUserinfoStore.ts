@@ -7,11 +7,11 @@ export const useUserinfoStore = defineStore(
   () => {
     const userinfo = ref<Userinfo>()
 
-    const setUserinfo: Dispatch<Userinfo | undefined> = (value) => {
-      userinfo.value = isFunction(value) ? value(userinfo?.value) : value
-    }
+    // const setUserinfo: Dispatch<Userinfo | undefined> = (value) => {
+    //   userinfo.value = isFunction(value) ? value(userinfo?.value) : value
+    // }
 
-    return { userinfo, setUserinfo }
+    return { userinfo }
   },
   {
     persist: true,
