@@ -35,7 +35,7 @@ const { setUserinfo } = useUserinfoStore()
 
 const handleSubmit = async () => {
   const options = banana.validate(objInput)
-  const userinfo = await doUserLogin(options, { message: 'xxx' })
+  const userinfo = await doUserLogin(options)
   setUserinfo(userinfo)
   router.back()
 }

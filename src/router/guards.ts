@@ -1,18 +1,12 @@
 import { useUserinfoStore } from '@/stores'
-import { userinfoStorage } from '@/utils'
 import type { Router } from 'vue-router'
-// import { pinia } from '@/stores'
 
 export function setupGuards(router: Router) {
-  // const userinfo = useUserinfoStore(pinia)
-
-  // console.log('userinfoS =》 ', userinfo)
-
   // 鉴定权限
   router.beforeEach((to) => {
+    const { userinfo } = useUserinfoStore()
     // 是否需要授权，1 需要授权、-1 不需要登录、0 登录、不登录都可以
     const requiresAuth = to.meta.requiresAuth ?? 0
-    const userinfo = userinfoStorage.getItem()
 
     // 已登录进入到不需要登录的页面，直接跳转回首页
     if (userinfo && requiresAuth === -1) {
