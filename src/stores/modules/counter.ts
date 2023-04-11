@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { withToRefs } from './withToRefs'
+import { withToRefs } from '../withToRefs'
 
 export const useCounterStore = withToRefs(
   defineStore('counter', () => {
@@ -13,5 +13,3 @@ export const useCounterStore = withToRefs(
     return { count, doubleCount, increment }
   }),
 )
-
-useCounterStore()
