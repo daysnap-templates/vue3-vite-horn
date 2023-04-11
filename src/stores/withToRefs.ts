@@ -1,9 +1,13 @@
-export function withToRefs<T extends (...args: any[]) => any>(fn: T) {
-  return (...args: [...Parameters<T>, string?]): ReturnType<T> => {
-    return null as any
+import { storeToRefs } from 'pinia'
+
+export function withToRefs<T extends (...args: any[]) => any>(fn: T, isTrans: boolean = true) {
+  return (isTransform: boolean = isTrans, ...args: Parameters<T>): ReturnType<T> => {
+    const result = fn(...args)
+
+    if (isTransform) {
+      return Object.assign({}, result, storeToRefs(result))
+    }
+
+    return result
   }
 }
-
-const fn = withToRefs(() => {
-  //
-})

@@ -2,20 +2,19 @@ import { useState } from '@/hooks'
 import type { Userinfo } from '@/types'
 import { defineStore } from 'pinia'
 import { withOut } from './withOut'
+import { withToRefs } from './withToRefs'
 
-export const useUserinfoStore = withOut(
-  defineStore(
-    '$$USER_INFO',
-    () => {
-      // const userinfo = ref<Userinfo>({ x: 1 } as any)
-      // const setUserinfo = (val: Userinfo) => {
-      // userinfo.value = val
-      //
-      const [userinfo, setUserinfo] = useState<Userinfo>({ token: 1 } as any)
-      return { userinfo, setUserinfo }
-    },
-    {
-      persist: true,
-    },
+export const useUserinfoStore = withToRefs(
+  withOut(
+    defineStore(
+      '$$USER_INFO',
+      () => {
+        const [userinfo, setUserinfo] = useState<Userinfo>()
+        return { userinfo, setUserinfo }
+      },
+      {
+        persist: true,
+      },
+    ),
   ),
 )

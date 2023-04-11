@@ -6,19 +6,14 @@
       </hor-cell>
     </hor-cell-group>
     <van-button class="c-button" type="primary" @click="handleSubmit">登录</van-button>
-    <p>userinfo =》 {{ userinfo }}</p>
-
-    <p @click="increment">count => {{ count }}</p>
   </hor-view>
 </template>
 
 <script lang="ts" setup>
 import { doUserLogin } from '@/api'
-import { useCounterStore } from '@/stores/counter'
-import { useUserinfoStore } from '@/stores/useUserinfoStore'
+import { useUserinfoStore } from '@/stores'
 import type { MetaDataObject } from '@daysnap/banana'
 import { banana } from '@daysnap/banana'
-import { storeToRefs } from 'pinia'
 
 const objInput = reactive<MetaDataObject>({
   username: {
@@ -36,22 +31,12 @@ const objInput = reactive<MetaDataObject>({
 })
 
 const router = useRouter()
-const userinfoStore = useUserinfoStore()
-const { userinfo } = storeToRefs(userinfoStore)
-
-//
-const counterStore = useCounterStore()
-const { count, increment } = { ...storeToRefs(useCounterStore()), ...useCounterStore() }
-// const { count } = storeToRefs(counterStore)
-// const { increment } = counterStore
+const { setUserinfo } = useUserinfoStore()
 
 const handleSubmit = async () => {
-  // const { setUserinfo } = useUserinfoStore()
-  // const {} = userinfoStore
-  console.log('xxx => ', userinfoStore.userinfo)
   const options = banana.validate(objInput)
-  const userinfo1 = await doUserLogin(options, { message: 'xxx' })
-  userinfoStore.setUserinfo(userinfo1)
-  // router.back()
+  const userinfo = await doUserLogin(options, { message: 'xxx' })
+  setUserinfo(userinfo)
+  router.back()
 }
 </script>
