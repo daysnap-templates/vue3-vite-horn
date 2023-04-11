@@ -1,7 +1,13 @@
-import { userinfoStorage } from '@/utils/storage'
+import { useUserinfoStore } from '@/stores'
+import { userinfoStorage } from '@/utils'
 import type { Router } from 'vue-router'
+// import { pinia } from '@/stores'
 
 export function setupGuards(router: Router) {
+  // const userinfo = useUserinfoStore(pinia)
+
+  // console.log('userinfoS =》 ', userinfo)
+
   // 鉴定权限
   router.beforeEach((to) => {
     // 是否需要授权，1 需要授权、-1 不需要登录、0 登录、不登录都可以
