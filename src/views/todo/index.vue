@@ -1,6 +1,8 @@
 <template>
-  <hor-view>
-    <p>1</p>
+  <hor-view @right="$router.push('/todo/form')">
+    <template #right>
+      <span>新增</span>
+    </template>
   </hor-view>
 </template>
 

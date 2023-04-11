@@ -20,4 +20,13 @@ export default [
       requiresAuth: 1,
     },
   },
+  {
+    path: '/todo/form',
+    name: 'todoForm',
+    component: () => import('@/views/todo/form.vue'),
+    meta: {
+      title: 'TODO',
+      requiresAuth: 1,
+    },
+  },
 ] as RouteRecordRaw[]

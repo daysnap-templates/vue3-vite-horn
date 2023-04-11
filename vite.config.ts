@@ -10,14 +10,25 @@ import { kebabCase } from '@daysnap/utils'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  optimizeDeps: {
-    //
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+
+  // dev server
+  // server: {
+  //   // 代理
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:3001',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ''),
+  //     },
+  //   },
+  // },
+
+  // 插件
   plugins: [
     vue(),
     vueJsx(),
