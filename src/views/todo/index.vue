@@ -17,5 +17,5 @@ reqTodoList({ pageIndex: 1, pageSize: 10 })
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/define';
+@import '@/assets/scss/define.scss';
 </style>

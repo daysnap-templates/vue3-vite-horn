@@ -1,5 +1,5 @@
 <template>
-  <hor-view>
+  <hor-view :left-arrow="false">
     <van-nav-bar />
     <hor-icon name="hor-version" />
   </hor-view>
