@@ -6,7 +6,15 @@
   </hor-view>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { reqTodoList } from '@/api'
+
+reqTodoList({ pageIndex: 1, pageSize: 10 })
+  .then((res) => {
+    console.log('res => ', res)
+  })
+  .toast()
+</script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/define';

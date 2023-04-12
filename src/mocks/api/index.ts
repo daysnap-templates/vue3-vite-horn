@@ -1,12 +1,13 @@
 import { registerAdapter } from '@/api'
 import { isFunction } from '@daysnap/utils'
 
+// https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
+const modules = import.meta.glob(`./modules/**/*.{json,ts}`)
+
 // 注册 api mock 适配器
 registerAdapter('mock', async (config) => {
   const { headers, mockUrl = '', method } = config
   try {
-    // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
-    const modules = import.meta.glob(`./modules/**/*.{json,ts}`)
     const key = `./modules/${mockUrl.replace(/\//g, '_')}`
 
     const module = [`${key}_${method}.ts`, `${key}_${method}.json`, `${key}.ts`, `${key}.json`]
