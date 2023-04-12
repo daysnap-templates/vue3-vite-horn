@@ -35,3 +35,10 @@ registerAdapter('mock', async (config) => {
     return Promise.reject(error)
   }
 })
+
+function defineApiMock() {
+  return {
+    url: '',
+    data: '',
+  }
+}
