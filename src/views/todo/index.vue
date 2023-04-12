@@ -3,14 +3,14 @@
     <template #right>
       <span>新增</span>
     </template>
-    <xxx-skeleton
-      :loading="false"
-      @refresh="handleRefresh"
-      @refresh-empty="handleEmptyRefresh"
-      @refresh-error="handleErrorRefresh"
-    ></xxx-skeleton>
-    <xxx-skeleton></xxx-skeleton>
-    <xxx-skeleton error="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"></xxx-skeleton>
+    <xxx-scroll>
+      <xxx-skeleton
+        :loading="false"
+        @refresh="handleRefresh"
+        @refresh-empty="handleEmptyRefresh"
+        @refresh-error="handleErrorRefresh"
+      ></xxx-skeleton>
+    </xxx-scroll>
   </hor-view>
 </template>
 
