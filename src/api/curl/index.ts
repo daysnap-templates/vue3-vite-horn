@@ -1,7 +1,7 @@
 import { formatPathParams } from '@daysnap/utils'
 import type { CurlOptions } from './types'
 import { instance } from './instance'
-import { getAdapter } from './adapter'
+import { getAdapter, formatAdapter } from './adapter'
 
 export * from './adapter'
 
@@ -27,8 +27,11 @@ export function curl<T = any>(
   options.url = url
   options[method === 'get' ? 'params' : 'data'] = data
 
+  const adapterName = formatAdapter(adapter)
+  options.adapterName = adapterName
+
   return instance({
     ...options,
-    adapter: getAdapter(adapter),
+    adapter: getAdapter(adapterName),
   })
 }

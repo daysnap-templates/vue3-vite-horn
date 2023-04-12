@@ -3,13 +3,20 @@ import { isFunction } from '@daysnap/utils'
 
 // 注册 api mock 适配器
 registerAdapter('mock', async (config) => {
-  const { headers, mockUrl } = config as any
+  const { headers, mockUrl = '', method } = config
   try {
     // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
     const modules = import.meta.glob(`./modules/**/*.{json,ts}`)
     const key = `./modules/${mockUrl.replace(/\//g, '_')}`
 
-    const module = modules[`${key}.ts`] || modules[`${key}.json`]
+    const module = [`${key}_${method}.ts`, `${key}_${method}.json`, `${key}.ts`, `${key}.json`]
+      .map((key) => modules[key])
+      .find((item) => !!item)
+
+    if (!module) {
+      throw new Error(`${mockUrl} not found：${key}`)
+    }
+
     let { default: data } = (await module()) as any
     if (isFunction(data)) {
       data = data(config)

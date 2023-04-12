@@ -16,12 +16,12 @@ import { showToast } from 'vant'
 
 const objInput = reactive<MetaDataObject>({
   name: {
-    value: '',
+    value: '1',
     label: '姓名',
     rules: [{ required: true, message: '请填写姓名' }],
   },
   content: {
-    value: '',
+    value: '2',
     label: '要做的事情',
     rules: [{ required: true, message: '请填写要做的事情' }],
   },
