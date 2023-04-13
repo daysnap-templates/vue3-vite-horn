@@ -18,6 +18,7 @@
       :loading-text="loadingText"
       :finished-text="finishedText"
       :disabled="listDisabled"
+      :finished="finished"
       :immediate-check="false"
       @load="handleLoad"
     >

@@ -3,7 +3,7 @@
     <template #right>
       <span>新增</span>
     </template>
-    <xxx-scroll @refresh="handleRefresh" @load="handleLoad">
+    <xxx-scroll :finished="todoList.length >= total" @refresh="handleRefresh" @load="handleLoad">
       <xxx-skeleton
         :loading="false"
         @refresh="handleRefresh"
@@ -30,12 +30,16 @@ const fetchList = async (pageIndex = 1) => {
 
 fetchList()
 
-const handleLoad = () => {
+const handleLoad = async (cb: any) => {
   console.log('load')
+  await fetchList(2)
+  cb()
 }
 
-const handleRefresh = () => {
+const handleRefresh = async (cb: any) => {
   console.log('refresh')
+  await fetchList(1)
+  cb()
 }
 
 const handleErrorRefresh = () => {
