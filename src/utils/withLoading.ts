@@ -11,7 +11,7 @@ export function withLoading<T extends (params?: any) => Promise<any>>(
   return async (
     params?: Parameters<T>[0],
     options: WithLoadingOptions = opt,
-  ): Promise<ReturnType<T>> => {
+  ): Promise<Awaited<ReturnType<T>>> => {
     if (isBoolean(options) && options) {
       options = { duration: 0 }
     }
@@ -22,7 +22,7 @@ export function withLoading<T extends (params?: any) => Promise<any>>(
       return result
     } catch (error) {
       toast?.close()
-      return Promise.reject(error)
+      throw error
     }
   }
 }

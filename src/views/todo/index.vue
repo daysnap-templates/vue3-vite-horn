@@ -19,6 +19,12 @@
 import { reqTodoList } from '@/api'
 import TodoCell from './components/todo-cell.vue'
 import type { TodoItem } from '@/types'
+import { usePaging } from '@/hooks'
+
+const [data, trigger, status] = usePaging<TodoItem>(async () => {
+  // const { list, count } = await reqTodoList({ pageIndex: current, pageSize: size })
+  return { list: [], count: 1 }
+})
 
 const todoList = ref<TodoItem[]>([])
 const total = ref(0)
@@ -33,13 +39,13 @@ fetchList()
 const handleLoad = async (cb: any) => {
   console.log('load')
   await fetchList(2)
-  cb()
+  cb?.()
 }
 
 const handleRefresh = async (cb: any) => {
   console.log('refresh')
   await fetchList(1)
-  cb()
+  cb?.()
 }
 
 const handleErrorRefresh = () => {

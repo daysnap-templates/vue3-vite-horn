@@ -4,9 +4,9 @@ import type { TodoItem } from '@/types'
 import { withLoading } from '@/utils'
 
 // todo list
-export const reqTodoList = (data: PagingParams) => {
+export const reqTodoList = withLoading((data: PagingParams) => {
   return curl<PagingResult<TodoItem>>('api/todo', data)
-}
+}, false)
 
 // todo create
 export const doTodoCreate = withLoading((data: TodoItem) => {
