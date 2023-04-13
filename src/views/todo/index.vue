@@ -3,14 +3,20 @@
     <template #right>
       <span>新增</span>
     </template>
+    <!-- 搜索 -->
     <hor-search @search="handleSearch"></hor-search>
+
+    <!-- 刷新 -->
     <xxx-scroll :finished="pagingFinished" @refresh="pagingRefresh" @load="pagingLoad">
+      <!-- 骨架屏 -->
       <xxx-skeleton
         v-if="pagingStatus.pagingTotal <= 0"
         v-model:error="pagingStatus.pagingError"
         :loading="pagingStatus.pagingTotal < 0"
         @refresh="pagingRefresh"
       ></xxx-skeleton>
+
+      <!-- item cell -->
       <todo-cell v-for="(item, index) in pagingData" :key="index" :item="item"></todo-cell>
     </xxx-scroll>
   </hor-view>

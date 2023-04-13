@@ -42,6 +42,9 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
       initialStatus,
     ),
   )
+
+  // 列表数据
+  // https://github.com/vuejs/core/issues/2136
   const pagingData = ref([]) as Ref<T[]>
 
   // 请求数据
@@ -60,18 +63,10 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
       pagingStatus.pagingError = ''
       pagingStatus.pagingIndex = pagingIndex
       pagingStatus.pagingTotal = pagingTotal
-      if (pagingIndex === 1) {
-        const el = document.querySelector(scrollSelector)
-        if (el) {
-          el.scrollTop = 0
-        }
-        pagingData.value = pagingList
-      } else {
-        pagingData.value = [...pagingData.value, ...pagingList]
-      }
+      pagingData.value = pagingIndex === 1 ? pagingList : [...pagingData.value, ...pagingList]
     })
 
-    // 处理 error
+    // error
     ;(promise.toast
       ? promise.toast((_, msg) => {
           pagingStatus.pagingError = msg
@@ -85,11 +80,23 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
         options(pagingStatus.pagingError)
       }
 
-      // 错误信息
+      // first page return top
+      if (pagingIndex === 1) {
+        // 重置
+        const el = document.querySelector(scrollSelector)
+        if (el) {
+          el.scrollTop = 0
+        }
+      }
+
+      // first page error
       if (pagingStatus.pagingError && pagingIndex === 1) {
-        pagingStatus.pagingIndex = pagingIndex
-        pagingStatus.pagingTotal = -1
-        pagingData.value = []
+        // fix 修正立即执行 会导致 van-list loading 出现在屏幕中
+        setTimeout(() => {
+          pagingStatus.pagingIndex = pagingIndex
+          pagingStatus.pagingTotal = -1
+          pagingData.value = []
+        }, 80)
       }
     })
   }
