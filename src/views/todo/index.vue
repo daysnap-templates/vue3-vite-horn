@@ -3,25 +3,36 @@
     <template #right>
       <span>新增</span>
     </template>
-    <xxx-scroll>
+    <xxx-scroll @refresh="handleRefresh" @load="handleLoad">
       <xxx-skeleton
         :loading="false"
         @refresh="handleRefresh"
         @refresh-empty="handleEmptyRefresh"
         @refresh-error="handleErrorRefresh"
       ></xxx-skeleton>
+      <todo-cell v-for="(item, index) in todoList" :key="index" :item="item"></todo-cell>
     </xxx-scroll>
   </hor-view>
 </template>
 
 <script lang="ts" setup>
 import { reqTodoList } from '@/api'
+import TodoCell from './components/todo-cell.vue'
+import type { TodoItem } from '@/types'
 
-reqTodoList({ pageIndex: 1, pageSize: 10 })
-  .then((res) => {
-    console.log('res => ', res)
-  })
-  .toast()
+const todoList = ref<TodoItem[]>([])
+const total = ref(0)
+const fetchList = async (pageIndex = 1) => {
+  const { list, count } = await reqTodoList({ pageIndex, pageSize: 10 })
+  total.value = count
+  todoList.value = pageIndex === 1 ? list : [...todoList.value, ...list]
+}
+
+fetchList()
+
+const handleLoad = () => {
+  console.log('load')
+}
 
 const handleRefresh = () => {
   console.log('refresh')
