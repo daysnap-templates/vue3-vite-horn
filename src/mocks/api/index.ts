@@ -1,5 +1,5 @@
 import { registerAdapter } from '@/api'
-import { isFunction } from '@daysnap/utils'
+import { isFunction, isObject } from '@daysnap/utils'
 
 // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
 const modules = import.meta.glob(`./modules/**/*.{json,ts}`)
@@ -32,7 +32,12 @@ registerAdapter('mock', async (config) => {
       request: {},
     }
   } catch (error: any) {
-    error.config = config
+    if (isObject(error)) {
+      error.config = config
+    } else {
+      // eslint-disable-next-line no-ex-assign
+      error = { message: error, config }
+    }
     return Promise.reject(error)
   }
 })

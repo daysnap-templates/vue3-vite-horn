@@ -1,8 +1,13 @@
 import { sleep } from '@daysnap/utils'
 
 export default async function (options: any) {
-  console.log('options => ', options)
-  await sleep(1000)
+  await sleep(2000)
+
+  const { keyword } = options.params
+  if (keyword === '1') {
+    throw new Error('请求错误，测试错误请求错误')
+  }
+
   return {
     code: 0,
     success: true,

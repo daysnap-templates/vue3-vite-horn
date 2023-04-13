@@ -4,7 +4,7 @@ import type { TodoItem } from '@/types'
 import { withLoading } from '@/utils'
 
 // todo list
-export const reqTodoList = withLoading((data: PagingParams) => {
+export const reqTodoList = withLoading((data: PagingParams<{ keyword: string }>) => {
   return curl<PagingResult<TodoItem>>('api/todo', data)
 }, false)
 

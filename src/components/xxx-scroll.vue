@@ -7,12 +7,13 @@
     :loading-text="loadingText"
     :success-text="refreshErrorText || successText"
     :disabled="pullDisabled"
+    :success-duration="successDuration"
     @refresh="handleRefresh"
   >
     <van-list
       v-model:loading="loading"
+      v-model:error="loadError"
       class="hor-scroll-list"
-      :error="!!loadErrorText"
       :error-text="loadErrorText"
       :offset="offset"
       :loading-text="loadingText"
@@ -28,8 +29,6 @@
 </template>
 
 <script lang="ts" setup>
-import { listProps, pullRefreshProps } from 'vant'
-
 const emits = defineEmits(['refresh', 'load'])
 defineProps({
   loadingText: {
@@ -47,6 +46,10 @@ defineProps({
   successText: {
     type: String,
     default: '刷新成功',
+  },
+  successDuration: {
+    type: [String, Number],
+    default: 1000,
   },
   finishedText: {
     type: String,
@@ -73,25 +76,24 @@ defineProps({
 const refreshing = ref(false)
 const refreshErrorText = ref('')
 const loading = ref(false)
+const loadError = ref(false)
 const loadErrorText = ref('')
 
 const handleRefresh = () => {
-  console.log(loading)
-  setTimeout(() => {
-    refreshing.value = false
-  })
   emits('refresh', (error?: string) => {
     refreshErrorText.value = error || ''
     refreshing.value = false
 
     // 刷新完成需要重置下 load error
+    loadError.value = false
     loadErrorText.value = ''
   })
 }
 
 const handleLoad = () => {
   emits('load', (error?: string) => {
-    loadErrorText.value = error ? `${error},请点击重新加载` : ''
+    loadError.value = !!error
+    loadErrorText.value = error ? `${error}，请点击重新加载` : ''
     loading.value = false
   })
 }
@@ -103,8 +105,18 @@ const handleLoad = () => {
   @extend %h100;
   @extend %df1;
   @extend %oya;
-}
-.hor-scroll-list {
-  // @extend %h100;
+  :deep {
+    .van-list__finished-text,
+    .van-list__error-text,
+    .van-list__loading {
+      @extend %df;
+      @extend %aic;
+      @extend %jcc;
+      @extend %bsb;
+      line-height: normal;
+      padding: j(16);
+      min-height: j(80);
+    }
+  }
 }
 </style>

@@ -48,6 +48,7 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
     const opt: UsePagingTaskOptions = { loading: false, toast: false }
     if (isBoolean(options)) {
       opt.loading = options
+      opt.toast = options
     } else if (isObject(options)) {
       Object.assign(opt, options)
     }
