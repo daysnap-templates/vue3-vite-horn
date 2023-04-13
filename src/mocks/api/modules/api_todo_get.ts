@@ -1,7 +1,7 @@
 import { sleep } from '@daysnap/utils'
 
 export default async function (options: any) {
-  await sleep(2000)
+  await sleep(200)
 
   const { keyword } = options.params
   if (keyword === '1') {
@@ -13,7 +13,7 @@ export default async function (options: any) {
     success: true,
     message: '请求成功',
     data: {
-      count: 55,
+      count: 20,
       list: new Array(10).fill('').map((item, index) => {
         return {
           name: `张三${index}`,

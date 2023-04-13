@@ -7,7 +7,13 @@
     <hor-search @search="handleSearch"></hor-search>
 
     <!-- 刷新 -->
-    <xxx-scroll :finished="pagingFinished" @refresh="pagingRefresh" @load="pagingLoad">
+    <xxx-scroll
+      :list-disabled="pagingStatus.pagingTotal <= 0"
+      :pull-disabled="pagingStatus.pagingTotal <= 0"
+      :finished="pagingFinished"
+      @refresh="pagingRefresh"
+      @load="pagingLoad"
+    >
       <!-- 骨架屏 -->
       <xxx-skeleton
         v-if="pagingStatus.pagingTotal <= 0"

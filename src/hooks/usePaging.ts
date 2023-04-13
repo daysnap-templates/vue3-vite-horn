@@ -91,12 +91,9 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
 
       // first page error
       if (pagingStatus.pagingError && pagingIndex === 1) {
-        // fix 修正立即执行 会导致 van-list loading 出现在屏幕中
-        setTimeout(() => {
-          pagingStatus.pagingIndex = pagingIndex
-          pagingStatus.pagingTotal = -1
-          pagingData.value = []
-        }, 80)
+        pagingStatus.pagingIndex = pagingIndex
+        pagingStatus.pagingTotal = -1
+        pagingData.value = []
       }
     })
   }
@@ -109,6 +106,9 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
   // 加载
   const pagingLoad = (options?: UsePagingTriggerOptions) => {
     if (pagingFinished.value) {
+      if (isFunction(options)) {
+        options()
+      }
       return console.log('没有更多了')
     }
     pagingTrigger(pagingStatus.pagingIndex + 1, options)
