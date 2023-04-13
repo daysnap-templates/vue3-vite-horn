@@ -20,7 +20,7 @@ registerAdapter('mock', async (config) => {
 
     let { default: data } = (await module()) as any
     if (isFunction(data)) {
-      data = data(config)
+      data = await data(config)
     }
 
     return {

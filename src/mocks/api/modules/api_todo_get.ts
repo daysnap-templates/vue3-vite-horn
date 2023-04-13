@@ -1,4 +1,8 @@
-export default function () {
+import { sleep } from '@daysnap/utils'
+
+export default async function (options: any) {
+  console.log('options => ', options)
+  await sleep(1000)
   return {
     code: 0,
     success: true,

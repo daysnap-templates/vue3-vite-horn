@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-cell">
+  <div class="todo-cell fade-in">
     <h2>{{ item.name }}</h2>
     <p>{{ item.content }}</p>
   </div>

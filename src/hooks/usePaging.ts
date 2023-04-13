@@ -1,18 +1,24 @@
+import { isBoolean, isFunction, isObject, isString } from '@daysnap/utils'
+
 export interface UsePagingStatus {
-  current: number
-  size: number
-  total: number
-  loading: boolean
-  error: string
+  pagingIndex: number
+  pagingSize: number
+  pagingTotal: number
+  pagingError: string
 }
 
 export interface UsePagingTaskResult<T = any> {
-  list: T[]
-  total: number
+  pagingList: T[]
+  pagingTotal: number
+}
+
+export interface UsePagingTaskOptions {
+  loading?: boolean // 是否需要 loading
+  toast?: boolean // 是否需要 弱提示
 }
 
 export interface UsePagingTask<T = any> {
-  (status: UsePagingStatus, loading?: boolean): Promise<UsePagingTaskResult<T>>
+  (status: UsePagingStatus, options: UsePagingTaskOptions): Promise<UsePagingTaskResult<T>>
 }
 
 export interface UsePagingOptions {
@@ -20,25 +26,86 @@ export interface UsePagingOptions {
   immediate?: boolean
 }
 
+export type UsePagingTriggerOptions = ((...args: any[]) => any) | boolean | UsePagingTaskOptions
+
 export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOptions = {}) {
-  const { initialStatus } = options
-  const status = reactive<UsePagingStatus>(
+  const { initialStatus, immediate } = options
+  const pagingStatus = reactive<UsePagingStatus>(
     Object.assign(
       {
-        current: 0,
-        size: 10,
-        total: -1,
-        loading: false,
-        error: '',
+        pagingIndex: 0,
+        pagingSize: 10,
+        pagingTotal: -1,
+        pagingError: '',
       },
       initialStatus,
     ),
   )
-  const data = ref<T[]>([])
+  const pagingData = ref([]) as Ref<T[]>
 
-  const trigger = () => {
-    //
+  // 请求数据
+  const pagingTrigger = (pagingIndex: number, options?: UsePagingTriggerOptions) => {
+    const opt: UsePagingTaskOptions = { loading: false, toast: false }
+    if (isBoolean(options)) {
+      opt.loading = options
+    } else if (isObject(options)) {
+      Object.assign(opt, options)
+    }
+
+    // fetch data
+    const promise = task({ ...pagingStatus, pagingIndex }, opt).then((res) => {
+      const { pagingList, pagingTotal } = res
+      pagingStatus.pagingIndex = pagingIndex
+      pagingStatus.pagingError = ''
+      pagingStatus.pagingTotal = pagingTotal
+      pagingData.value = pagingIndex === 1 ? pagingList : [...pagingData.value, ...pagingList]
+    })
+
+    // 处理 error
+    ;(promise.toast
+      ? promise.toast((_, msg) => {
+          pagingStatus.pagingError = msg
+          return opt.toast
+        })
+      : promise.catch((err) => {
+          pagingStatus.pagingError = isString(err) ? err : JSON.stringify(err)
+        })
+    ).finally(() => {
+      if (isFunction(options)) {
+        options(pagingStatus.pagingError)
+      }
+    })
   }
 
-  return [data, trigger, status] as const
+  // 刷新
+  const pagingRefresh = (options?: UsePagingTriggerOptions) => {
+    pagingTrigger(1, options)
+  }
+
+  // 加载
+  const pagingLoad = (options?: UsePagingTriggerOptions) => {
+    if (pagingFinished.value) {
+      return console.log('没有更多了')
+    }
+    pagingTrigger(pagingStatus.pagingIndex + 1, options)
+  }
+
+  // 是否加载完毕
+  const pagingFinished = computed(() => {
+    return pagingStatus.pagingTotal !== -1 && pagingData.value.length >= pagingStatus.pagingTotal
+  })
+
+  // 初始加载
+  if (immediate) {
+    pagingRefresh()
+  }
+
+  return {
+    pagingFinished,
+    pagingData,
+    pagingTrigger,
+    pagingRefresh,
+    pagingLoad,
+    pagingStatus,
+  }
 }

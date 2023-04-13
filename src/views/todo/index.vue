@@ -3,14 +3,13 @@
     <template #right>
       <span>新增</span>
     </template>
-    <xxx-scroll :finished="todoList.length >= total" @refresh="handleRefresh" @load="handleLoad">
+    <xxx-scroll :finished="pagingFinished" @refresh="pagingRefresh" @load="pagingLoad">
       <xxx-skeleton
-        :loading="false"
-        @refresh="handleRefresh"
-        @refresh-empty="handleEmptyRefresh"
-        @refresh-error="handleErrorRefresh"
+        v-if="pagingStatus.pagingTotal <= 0"
+        :loading="pagingStatus.pagingTotal < 0"
+        @refresh="pagingRefresh"
       ></xxx-skeleton>
-      <todo-cell v-for="(item, index) in todoList" :key="index" :item="item"></todo-cell>
+      <todo-cell v-for="(item, index) in pagingData" :key="index" :item="item"></todo-cell>
     </xxx-scroll>
   </hor-view>
 </template>
@@ -21,40 +20,18 @@ import TodoCell from './components/todo-cell.vue'
 import type { TodoItem } from '@/types'
 import { usePaging } from '@/hooks'
 
-const [data, trigger, status] = usePaging<TodoItem>(async () => {
-  // const { list, count } = await reqTodoList({ pageIndex: current, pageSize: size })
-  return { list: [], count: 1 }
-})
-
-const todoList = ref<TodoItem[]>([])
-const total = ref(0)
-const fetchList = async (pageIndex = 1) => {
-  const { list, count } = await reqTodoList({ pageIndex, pageSize: 10 })
-  total.value = count
-  todoList.value = pageIndex === 1 ? list : [...todoList.value, ...list]
-}
-
-fetchList()
-
-const handleLoad = async (cb: any) => {
-  console.log('load')
-  await fetchList(2)
-  cb?.()
-}
-
-const handleRefresh = async (cb: any) => {
-  console.log('refresh')
-  await fetchList(1)
-  cb?.()
-}
-
-const handleErrorRefresh = () => {
-  console.log('refresh-error')
-}
-
-const handleEmptyRefresh = () => {
-  console.log('refresh-empty')
-}
+const { pagingData, pagingRefresh, pagingLoad, pagingFinished, pagingStatus } = usePaging<TodoItem>(
+  async ({ pagingIndex, pagingSize }, { loading }) => {
+    const { list, count } = await reqTodoList(
+      { pageIndex: pagingIndex, pageSize: pagingSize },
+      loading,
+    )
+    return { pagingList: list, pagingTotal: count }
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <style lang="scss" scoped>
