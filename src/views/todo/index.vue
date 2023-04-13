@@ -7,6 +7,7 @@
     <xxx-scroll :finished="pagingFinished" @refresh="pagingRefresh" @load="pagingLoad">
       <xxx-skeleton
         v-if="pagingStatus.pagingTotal <= 0"
+        v-model:error="pagingStatus.pagingError"
         :loading="pagingStatus.pagingTotal < 0"
         @refresh="pagingRefresh"
       ></xxx-skeleton>

@@ -24,12 +24,13 @@ export interface UsePagingTask<T = any> {
 export interface UsePagingOptions {
   initialStatus?: Partial<UsePagingStatus>
   immediate?: boolean
+  scrollSelector?: string
 }
 
 export type UsePagingTriggerOptions = ((...args: any[]) => any) | boolean | UsePagingTaskOptions
 
 export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOptions = {}) {
-  const { initialStatus, immediate } = options
+  const { initialStatus, immediate, scrollSelector = '.hor-scroll' } = options
   const pagingStatus = reactive<UsePagingStatus>(
     Object.assign(
       {
@@ -56,10 +57,18 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
     // fetch data
     const promise = task({ ...pagingStatus, pagingIndex }, opt).then((res) => {
       const { pagingList, pagingTotal } = res
-      pagingStatus.pagingIndex = pagingIndex
       pagingStatus.pagingError = ''
+      pagingStatus.pagingIndex = pagingIndex
       pagingStatus.pagingTotal = pagingTotal
-      pagingData.value = pagingIndex === 1 ? pagingList : [...pagingData.value, ...pagingList]
+      if (pagingIndex === 1) {
+        const el = document.querySelector(scrollSelector)
+        if (el) {
+          el.scrollTop = 0
+        }
+        pagingData.value = pagingList
+      } else {
+        pagingData.value = [...pagingData.value, ...pagingList]
+      }
     })
 
     // 处理 error
@@ -74,6 +83,13 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
     ).finally(() => {
       if (isFunction(options)) {
         options(pagingStatus.pagingError)
+      }
+
+      // 错误信息
+      if (pagingStatus.pagingError && pagingIndex === 1) {
+        pagingStatus.pagingIndex = pagingIndex
+        pagingStatus.pagingTotal = -1
+        pagingData.value = []
       }
     })
   }

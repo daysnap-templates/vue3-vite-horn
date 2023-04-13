@@ -2,6 +2,7 @@
   <van-pull-refresh
     v-model="refreshing"
     class="hor-scroll"
+    ref="el"
     :pulling-text="pullingText"
     :loosing-text="loosingText"
     :loading-text="loadingText"
@@ -97,6 +98,18 @@ const handleLoad = () => {
     loading.value = false
   })
 }
+
+const el = ref()
+const scrollTo = (top: number) => {
+  const instacne = getCurrentInstance()
+  if (instacne?.proxy?.$el) {
+    instacne.proxy.$el.scrollTop = top
+  }
+}
+
+defineExpose({
+  scrollTo,
+})
 </script>
 
 <style lang="scss" scoped>

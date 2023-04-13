@@ -7,7 +7,7 @@
         round
         type="primary"
         class="hor-skeleton-button"
-        @click="$emit('refresh'), $emit('refresh-empty')"
+        @click="$emit('refresh'), $emit('refresh-empty'), $emit('update:error', '')"
       >
         {{ errorBtnText }}
       </van-button>
@@ -59,7 +59,7 @@ defineProps({
   },
 })
 
-defineEmits(['refresh', 'refresh-error', 'refresh-empty'])
+defineEmits(['refresh', 'refresh-error', 'refresh-empty', 'update:error'])
 </script>
 
 <style lang="scss" scoped>
