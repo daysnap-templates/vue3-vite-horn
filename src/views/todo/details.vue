@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <hor-view>
+    <p>详情</p>
+  </hor-view>
 </template>
 
 <script lang="ts" setup></script>

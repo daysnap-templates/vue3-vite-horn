@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import { doTodoCreate } from '@/api/todo'
+import { trap } from '@/utils'
 import { type MetaDataObject, banana } from '@daysnap/banana'
 import { showToast } from 'vant'
 
@@ -33,6 +34,7 @@ const handleSubmit = async () => {
   const options = banana.validate(objInput)
   await doTodoCreate(options)
   showToast('创建成功')
+  trap.trigger('trap:todo:refresh')
   router.back()
 }
 </script>

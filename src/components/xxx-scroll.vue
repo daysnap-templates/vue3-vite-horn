@@ -92,7 +92,6 @@ const handleRefresh = () => {
 }
 
 const handleLoad = (e: any) => {
-  console.log('handleLoad => ', e)
   emits('load', (error?: string) => {
     loadError.value = !!error
     loadErrorText.value = error ? `${error}，请点击重新加载` : ''

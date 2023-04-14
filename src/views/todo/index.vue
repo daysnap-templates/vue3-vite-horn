@@ -39,6 +39,7 @@ import { reqTodoList } from '@/api'
 import type { TodoItem } from '@/types'
 import { usePaging } from '@/hooks'
 import { useKeepAliveByPosition, useKeepPosition } from '@daysnap/horn-use'
+import { trap } from '@/utils'
 import TodoCell from './components/todo-cell.vue'
 
 // keep position
@@ -59,6 +60,14 @@ const handleSearch = (key: any) => {
 }
 
 // 筛选
+
+// 监听 刷新 触发
+onActivated(() => {
+  // 用法组件名称 name + 事件id
+  trap.create('trap:todo:refresh', () => {
+    pagingRefresh(true)
+  })
+})
 
 // 分页 hooks
 const { pagingData, pagingRefresh, pagingLoad, pagingFinished, pagingStatus } = usePaging<TodoItem>(
