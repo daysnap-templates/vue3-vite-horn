@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
+import { showToast } from 'vant'
 import { doTodoCreate } from '@/api/todo'
 import { trap } from '@/utils'
 import { type MetaDataObject, banana } from '@daysnap/banana'
-import { showToast } from 'vant'
 
 const objInput = reactive<MetaDataObject>({
   name: {

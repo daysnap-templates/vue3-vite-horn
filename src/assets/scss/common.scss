@@ -9,8 +9,16 @@ html,body{
   height: 100vh;
 }
 
-.c-view-wrap{
-  @extend %h100;
+.c-pr{
+  position: relative;
+}
+
+.c-fixed-bottom{
+  .c-button{
+    &.van-button{
+      margin-top: 0;
+    }
+  }
 }
 
 .c-button{
@@ -19,5 +27,33 @@ html,body{
     @extend %ma;
     width: j(335);
     margin-top: j(60);
+    height: j(40);
   }
+}
+
+.c-fixed-bottom{
+  @extend %pf;
+  @extend %b0;
+  @extend %l0;
+  @extend %w100;
+  @extend %bsb;
+  padding: j(5) j(15);
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  &:after{
+      @extend %w100;
+      @extend %db;
+      content: '';
+      padding-bottom: constant(safe-area-inset-bottom);
+      padding-bottom: env(safe-area-inset-bottom);
+  }
+  &.iss{
+    
+  }
+}
+
+.c-ios-seat{
+  width: 100%;
+  height: constant(safe-area-inset-bottom);
+  height: env(safe-area-inset-bottom);
 }

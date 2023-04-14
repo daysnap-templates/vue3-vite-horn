@@ -1,7 +1,7 @@
 <template>
-  <hor-view @right="$router.push('/todo/form')">
+  <hor-view @right="handleFilter">
     <template #right>
-      <span>新增</span>
+      <span>筛选</span>
     </template>
     <!-- 搜索 -->
     <hor-search @search="handleSearch"></hor-search>
@@ -31,6 +31,13 @@
         @click="$router.push({ path: '/todo/details', query: { ...item } })"
       ></todo-cell>
     </xxx-scroll>
+
+    <!-- 功能按钮 -->
+    <div class="c-fixed-bottom c-pr">
+      <van-button class="c-button" type="primary" @click="$router.push('/todo/form')">
+        新增
+      </van-button>
+    </div>
   </hor-view>
 </template>
 
@@ -60,6 +67,9 @@ const handleSearch = (key: any) => {
 }
 
 // 筛选
+const handleFilter = () => {
+  //
+}
 
 // 监听 刷新 触发
 onActivated(() => {
