@@ -38,6 +38,9 @@
         新增
       </van-button>
     </div>
+
+    <!-- 筛选 -->
+    <filter-popup ref="filterPopupInstance" />
   </hor-view>
 </template>
 
@@ -48,6 +51,7 @@ import { usePaging } from '@/hooks'
 import { useKeepAliveByPosition, useKeepPosition } from '@daysnap/horn-use'
 import { trap } from '@/utils'
 import TodoCell from './components/todo-cell.vue'
+import FilterPopup from './components/filter-popup.vue'
 
 // keep position
 // 1. 页面命名 需保证跟 route.name 一致
@@ -67,8 +71,9 @@ const handleSearch = (key: any) => {
 }
 
 // 筛选
+const filterPopupInstance = ref<InstanceType<typeof FilterPopup>>()
 const handleFilter = () => {
-  //
+  filterPopupInstance.value?.show()
 }
 
 // 监听 刷新 触发
