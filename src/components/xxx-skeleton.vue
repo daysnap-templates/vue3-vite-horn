@@ -62,7 +62,7 @@ defineProps({
 defineEmits(['refresh', 'refresh-error', 'refresh-empty', 'update:error'])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/scss/define.scss';
 .hor-skeleton {
   @extend %df;
