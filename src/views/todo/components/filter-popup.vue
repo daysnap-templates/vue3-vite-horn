@@ -180,7 +180,6 @@ defineExpose({
 <style lang="scss" scoped>
 @import '@/assets/scss/define.scss';
 .filter-popup {
-  padding-bottom: j(100);
   :deep {
     .hor-view {
       background-color: #fafafa;
