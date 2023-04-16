@@ -2,16 +2,7 @@
   <div class="filter-popup">
     <xxx-popup :show="visible" @close="hide" title="筛选">
       <!-- 表单 -->
-      <hor-cell-group>
-        <component
-          v-for="(item, key) in computeForm"
-          v-bind="item"
-          v-model="item.value"
-          :key="key"
-          :is="item.is"
-          @click="handleTransfer(item)"
-        />
-      </hor-cell-group>
+      <pro-schema-form :fields="objForm" />
 
       <!-- 重置 确认 -->
       <div class="c-fixed-bottom">
@@ -30,34 +21,18 @@
 </template>
 
 <script lang="ts" setup>
-import { useTransfer, useVisible } from '@daysnap/horn-use'
+import { useVisible } from '@daysnap/horn-use'
 import { banana, type MetaDataObject } from '@daysnap/banana'
-import { useFormatForm } from '@/hooks'
-import {
-  HorField,
-  HorCheckbox,
-  HorRadio,
-  HorDatePicker,
-  HorCell,
-  type HorDatePickerInstance,
-  HorLicensePlate,
-  HorTextarea,
-} from '@daysnap/horn-ui'
-import '@daysnap/horn-ui/src/hor-field/style'
-import '@daysnap/horn-ui/src/hor-checkbox/style'
-import '@daysnap/horn-ui/src/hor-date-picker/style'
-import '@daysnap/horn-ui/src/hor-license-plate/style'
-import '@daysnap/horn-ui/src/hor-textarea/style'
+import type { HorDatePickerInstance } from '@daysnap/horn-ui'
 
 const horDatePickerInstance = ref<HorDatePickerInstance>()
-const handleTransfer = useTransfer()
 
 const objForm = reactive<MetaDataObject>({
   name: {
     label: '姓名',
     value: '',
     placeholder: '请填写姓名',
-    is: shallowRef(HorField),
+    is: 'HorField',
     clearable: true,
     direction: 'column',
     rules: [{ required: true, message: '请填写姓名' }],
@@ -66,7 +41,7 @@ const objForm = reactive<MetaDataObject>({
     label: '性别',
     value: '',
     placeholder: '请选择性别',
-    is: shallowRef(HorRadio),
+    is: 'HorRadio',
     direction: 'column',
     options: [
       {
@@ -84,7 +59,7 @@ const objForm = reactive<MetaDataObject>({
     label: '生日',
     value: '',
     placeholder: '请选择生日',
-    is: shallowRef(HorCell),
+    is: 'HorCell',
     arrow: true,
     direction: 'column',
     fn: async (item: any) => {
@@ -99,7 +74,7 @@ const objForm = reactive<MetaDataObject>({
   isLicense: {
     label: '是否上牌',
     value: '',
-    is: shallowRef(HorRadio),
+    is: 'HorRadio',
     direction: 'column',
     options: [
       {
@@ -117,7 +92,7 @@ const objForm = reactive<MetaDataObject>({
     label: '车牌号',
     value: '',
     placeholder: '请填写车牌号',
-    is: shallowRef(HorField),
+    is: 'HorField',
     direction: 'column',
     hidden: (() => objForm.isLicense.value !== '0') as any,
     rules: [{ required: true, message: '请填写车牌号' }],
@@ -125,7 +100,7 @@ const objForm = reactive<MetaDataObject>({
   hobbies: {
     label: '爱好',
     value: [],
-    is: shallowRef(HorCheckbox),
+    is: 'HorCheckbox',
     direction: 'column',
     shape: 'square',
     options: [
@@ -152,11 +127,9 @@ const objForm = reactive<MetaDataObject>({
     label: '备注',
     value: '',
     placeholder: '请填写备注',
-    is: shallowRef(HorTextarea),
+    is: 'HorTextarea',
   },
 })
-
-const computeForm = useFormatForm(objForm)
 
 const handleSubmit = () => {
   const options = banana.extract(objForm)
@@ -167,6 +140,7 @@ const handleReset = () => {
 }
 
 const { visible, show, hide, confirm } = useVisible()
+show()
 
 defineExpose({
   show,

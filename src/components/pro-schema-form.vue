@@ -20,7 +20,6 @@ import {
   HorRadio,
   HorDatePicker,
   HorCell,
-  type HorDatePickerInstance,
   HorLicensePlate,
   HorTextarea,
 } from '@daysnap/horn-ui'
@@ -61,7 +60,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/scss/define.scss';
-</style>

@@ -40,7 +40,7 @@
     </div>
 
     <!-- 筛选 -->
-    <filter-popup ref="filterPopupInstance" />
+    <pro-schema-filter-popup ref="proSchemaFilterPopupInstance" />
   </hor-view>
 </template>
 
@@ -51,7 +51,7 @@ import { usePaging } from '@/hooks'
 import { useKeepAliveByPosition, useKeepPosition } from '@daysnap/horn-use'
 import { trap } from '@/utils'
 import TodoCell from './components/todo-cell.vue'
-import FilterPopup from './components/filter-popup.vue'
+import ProSchemaFilterPopup from '@/components/pro-schema-filter-popup.vue'
 
 // keep position
 // 1. 页面命名 需保证跟 route.name 一致
@@ -71,9 +71,11 @@ const handleSearch = (key: any) => {
 }
 
 // 筛选
-const filterPopupInstance = ref<InstanceType<typeof FilterPopup>>()
-const handleFilter = () => {
-  filterPopupInstance.value?.show()
+const proSchemaFilterPopupInstance = ref<InstanceType<typeof ProSchemaFilterPopup>>()
+let query = {} // 默认值
+const handleFilter = async () => {
+  query = await proSchemaFilterPopupInstance.value!.show()
+  pagingRefresh(true)
 }
 
 // 监听 刷新 触发
@@ -88,7 +90,7 @@ onActivated(() => {
 const { pagingData, pagingRefresh, pagingLoad, pagingFinished, pagingStatus } = usePaging<TodoItem>(
   async ({ pagingIndex, pagingSize }, { loading }) => {
     const { list, count } = await reqTodoList(
-      { pageIndex: pagingIndex, pageSize: pagingSize, keyword },
+      { pageIndex: pagingIndex, pageSize: pagingSize, keyword, ...query },
       loading,
     )
     return { pagingList: list, pagingTotal: count }
@@ -98,7 +100,3 @@ const { pagingData, pagingRefresh, pagingLoad, pagingFinished, pagingStatus } = 
   },
 )
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/scss/define.scss';
-</style>
