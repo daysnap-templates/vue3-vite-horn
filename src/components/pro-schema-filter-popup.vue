@@ -30,14 +30,33 @@ const props = defineProps({
 
 const handleSubmit = () => {
   const options = banana.extract(props.fileds)
-  console.log('options => ', options)
-}
-const handleReset = () => {
-  //
+  confirm(options)
 }
 
-const { visible, show, hide, confirm } = useVisible()
-// show()
+interface Options {
+  initialValue?: Record<string, any>
+  filedsValue?: Record<string, any>
+}
+
+const dynamicProp = ref<Options>({})
+
+const handleReset = () => {
+  const { initialValue = {} } = dynamicProp.value
+  banana.assignment(initialValue, props.fileds)
+}
+
+const { visible, show, hide, confirm } = useVisible<Options>({
+  showCallback: (options = {}) => {
+    dynamicProp.value = options
+    const { initialValue, filedsValue } = options
+    if (initialValue !== filedsValue && filedsValue) {
+      banana.assignment(filedsValue, props.fileds)
+    }
+  },
+  confirmCallback: (res) => {
+    return res
+  },
+})
 
 defineExpose({
   show,

@@ -40,7 +40,10 @@
     </div>
 
     <!-- 筛选 -->
-    <pro-schema-filter-popup ref="proSchemaFilterPopupInstance" />
+    <pro-schema-filter-popup ref="proSchemaFilterPopupInstance" :fileds="fields" />
+
+    <!-- 日期 -->
+    <hor-date-picker ref="horDatePickerInstance" />
   </hor-view>
 </template>
 
@@ -52,6 +55,7 @@ import { useKeepAliveByPosition, useKeepPosition } from '@daysnap/horn-use'
 import { trap } from '@/utils'
 import TodoCell from './components/todo-cell.vue'
 import ProSchemaFilterPopup from '@/components/pro-schema-filter-popup.vue'
+import { useFilterFormFileds } from './fileds'
 
 // keep position
 // 1. 页面命名 需保证跟 route.name 一致
@@ -72,9 +76,14 @@ const handleSearch = (key: any) => {
 
 // 筛选
 const proSchemaFilterPopupInstance = ref<InstanceType<typeof ProSchemaFilterPopup>>()
-let query = {} // 默认值
+const [fields, initialValue] = useFilterFormFileds()
+let query = initialValue // 默认值
 const handleFilter = async () => {
-  query = await proSchemaFilterPopupInstance.value!.show()
+  query = await proSchemaFilterPopupInstance.value!.show({
+    initialValue,
+    filedsValue: query,
+  })
+  console.log('query => ', query)
   pagingRefresh(true)
 }
 
