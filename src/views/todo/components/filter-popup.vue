@@ -56,11 +56,11 @@ const objForm = reactive<MetaDataObject>({
   name: {
     label: '姓名',
     value: '',
-    placeholder: '请输入姓名',
+    placeholder: '请填写姓名',
     is: shallowRef(HorField),
     clearable: true,
     direction: 'column',
-    rules: [{ required: true, message: '请输入姓名' }],
+    rules: [{ required: true, message: '请填写姓名' }],
   },
   sex: {
     label: '性别',
@@ -115,11 +115,12 @@ const objForm = reactive<MetaDataObject>({
   },
   license: {
     label: '车牌号',
-    value: '沪888888',
-    is: shallowRef(HorLicensePlate),
+    value: '',
+    placeholder: '请填写车牌号',
+    is: shallowRef(HorField),
     direction: 'column',
     hidden: (() => objForm.isLicense.value !== '0') as any,
-    rules: [{ required: true, message: '请选择车牌号' }],
+    rules: [{ required: true, message: '请填写车牌号' }],
   },
   hobbies: {
     label: '爱好',
@@ -150,6 +151,7 @@ const objForm = reactive<MetaDataObject>({
   remark: {
     label: '备注',
     value: '',
+    placeholder: '请填写备注',
     is: shallowRef(HorTextarea),
   },
 })
