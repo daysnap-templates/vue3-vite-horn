@@ -6,7 +6,12 @@
     @update:show="$emit('update:show', $event)"
     @close="$emit('close', $event)"
   >
-    <hor-view :title="title" :use-left-event="false" @left="$emit('left')" @right="$emit('right')">
+    <hor-view
+      :title="title"
+      :use-left-event="false"
+      @left="$emit('left'), $emit('update:show', false), $emit('close')"
+      @right="$emit('right')"
+    >
       <template #left>
         <slot name="left"></slot>
       </template>
