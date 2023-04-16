@@ -1,10 +1,6 @@
 <template>
   <hor-view>
-    <hor-cell-group>
-      <hor-cell v-for="(item, key) in objInput" v-bind="item" :key="key" required>
-        <hor-input v-model="item.value" />
-      </hor-cell>
-    </hor-cell-group>
+    <pro-schema-form :fields="objForm" />
     <van-button class="c-button" type="primary" @click="handleSubmit">提交</van-button>
   </hor-view>
 </template>
@@ -15,15 +11,19 @@ import { doTodoCreate } from '@/api/todo'
 import { trap } from '@/utils'
 import { type MetaDataObject, banana } from '@daysnap/banana'
 
-const objInput = reactive<MetaDataObject>({
+const objForm = reactive<MetaDataObject>({
   name: {
     value: '1',
     label: '姓名',
+    is: 'hor-field',
+    placeholder: '请填写姓名',
     rules: [{ required: true, message: '请填写姓名' }],
   },
   content: {
     value: '2',
     label: '要做的事情',
+    is: 'hor-field',
+    placeholder: '请填写要做的事情',
     rules: [{ required: true, message: '请填写要做的事情' }],
   },
 })
@@ -31,7 +31,7 @@ const objInput = reactive<MetaDataObject>({
 const router = useRouter()
 // 提交
 const handleSubmit = async () => {
-  const options = banana.validate(objInput)
+  const options = banana.validate(objForm)
   await doTodoCreate(options)
   showToast('创建成功')
   trap.trigger('trap:todo:refresh')

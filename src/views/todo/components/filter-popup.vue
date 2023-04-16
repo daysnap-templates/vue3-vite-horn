@@ -168,8 +168,6 @@ const handleReset = () => {
 
 const { visible, show, hide, confirm } = useVisible()
 
-show()
-
 defineExpose({
   show,
   hide,
