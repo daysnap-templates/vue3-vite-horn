@@ -14,44 +14,31 @@
 
       <div class="c-ios-seat"></div>
     </xxx-popup>
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useVisible } from '@daysnap/horn-use'
 import { banana } from '@daysnap/banana'
+import { proSchemaFilterPopupProps, type ProSchemaFilterPopupProps } from './types'
 
-const props = defineProps({
-  fileds: {
-    type: Object,
-    default: () => ({}),
-  },
-})
+const props = defineProps(proSchemaFilterPopupProps)
+const dynamicProps = ref<Partial<ProSchemaFilterPopupProps>>()
 
 const handleSubmit = () => {
   const options = banana.extract(props.fileds)
   confirm(options)
 }
 
-interface Options {
-  initialValue?: Record<string, any>
-  filedsValue?: Record<string, any>
-}
-
-const dynamicProp = ref<Options>({})
-
 const handleReset = () => {
-  const { initialValue = {} } = dynamicProp.value
-  banana.assignment(initialValue, props.fileds)
+  //
 }
 
-const { visible, show, hide, confirm } = useVisible<Options>({
+const { visible, show, hide, confirm } = useVisible<Partial<ProSchemaFilterPopupProps>>({
   showCallback: (options = {}) => {
-    dynamicProp.value = options
-    const { initialValue, filedsValue } = options
-    if (initialValue !== filedsValue && filedsValue) {
-      banana.assignment(filedsValue, props.fileds)
-    }
+    dynamicProps.value = options
+    //
   },
   confirmCallback: (res) => {
     return res
