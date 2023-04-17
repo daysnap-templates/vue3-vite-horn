@@ -54,7 +54,7 @@ import { usePaging } from '@/hooks'
 import { useKeepAliveByPosition, useKeepPosition } from '@daysnap/horn-use'
 import { trap } from '@/utils'
 import TodoCell from './components/todo-cell.vue'
-import ProSchemaFilterPopup from '@/components/pro-schema-filter-popup.vue'
+import ProSchemaFilterPopup from '@/components/pro-schema-filter-popup'
 import { useFilterFormFileds } from './fileds'
 
 // keep position
