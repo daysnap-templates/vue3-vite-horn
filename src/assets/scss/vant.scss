@@ -1,7 +1,0 @@
-// 覆盖 vant 的样式
-// van 样式 background color
-.van-popup{
-  &.van-toast{
-    background: var(--van-toast-background);
-  }
-}
