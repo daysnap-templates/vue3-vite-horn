@@ -39,4 +39,28 @@ npm run dev
 
 # 安装依赖包
 
+npm install @daysnap/types -D
+npm install @daysnap/define-sass -D
+
+npm install unplugin-auto-import unplugin-vue-components -D
+
+npm install cross-env -D
+
+npm install sass
+npm install postcss-pxtorem @types/postcss-pxtorem -D
+
+
+
+npm install @daysnap/banana -S
+npm install @daysnap/horn-ui -S
+npm install @daysnap/horn-use -S
+npm install @daysnap/utils -S
+
+npm install vant -S
+
+npm install pinia-plugin-persistedstate -S
+
+npm install axios -S
+npm install amfe-flexible -S
+
 ```
