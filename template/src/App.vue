@@ -1,9 +1,9 @@
 <template>
   <RouterView v-slot="{ Component }">
     <Transition :name="transitionName">
-      <KeepAlive max="10" :include="includes">
-        <Component class="view-wrap" :is="Component" />
-      </KeepAlive>
+      <!-- <KeepAlive max="10" :include="includes"> -->
+      <Component class="view-wrap" :is="Component" />
+      <!-- </KeepAlive> -->
     </Transition>
   </RouterView>
   <DebugPanel>
@@ -25,6 +25,10 @@
 <style lang="scss">
   @import '@/assets/scss/global.scss';
   .view-wrap {
+    @extend %pa;
+    @extend %t0;
+    @extend %l0;
+    @extend %w100;
     @extend %h100;
     @extend %bsb;
     @extend %oya;
