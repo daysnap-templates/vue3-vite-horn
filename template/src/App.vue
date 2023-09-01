@@ -1,9 +1,30 @@
 <template>
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <Transition :name="transitionName">
+      <KeepAlive max="10" :include="includes">
+        <Component class="view-wrap" :is="Component" />
+      </KeepAlive>
+    </Transition>
+  </RouterView>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useKeepAliveByPosition, useTransitionNameByPosition } from '@daysnap/horn-use'
+
+  const { includes } = useKeepAliveByPosition(false)
+
+  const transitionName = useTransitionNameByPosition({
+    enterClass: 'slide-left',
+    leaveClass: 'slide-right',
+  })
+</script>
 
 <style lang="scss">
   @import '@/assets/scss/global.scss';
+  .view-wrap {
+    @extend %h100;
+    @extend %bsb;
+    @extend %oya;
+    background-color: red;
+  }
 </style>

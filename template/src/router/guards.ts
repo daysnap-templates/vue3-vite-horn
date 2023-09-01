@@ -1,5 +1,4 @@
 import { useUserinfoStore } from '@/stores'
-import { openIdStorage } from '@/utils'
 import type { Router } from 'vue-router'
 
 export function setupGuards(router: Router) {
@@ -7,12 +6,6 @@ export function setupGuards(router: Router) {
   router.beforeEach((to) => {
     const { userinfo } = useUserinfoStore()
     const isLogin = !!userinfo?.token
-
-    // 重置参数
-    if (to.query.openId) {
-      openIdStorage.setItem(to.query.openId.toString())
-      return { path: to.path, replace: true }
-    }
 
     // 是否需要授权，1 需要授权、-1 不需要登录、0 登录、不登录都可以
     const requiresAuth = to.meta.requiresAuth ?? 0

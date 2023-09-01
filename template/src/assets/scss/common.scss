@@ -13,15 +13,8 @@ body {
   height: 100vh;
 }
 
-.c-view-wrap {
-  @extend %bsb;
-  @extend %oya;
-  height: 100vh;
-  padding-bottom: j(80);
-}
-
 .c-pr {
-  position: relative;
+  @extend %pr;
 }
 
 .c-button {
@@ -61,19 +54,7 @@ body {
 }
 
 .c-ios-seat {
-  width: 100%;
+  @extend %w100;
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
-}
-
-.c-card {
-  @extend %ma;
-  @extend %db;
-  @extend %bsb;
-  @extend %pr;
-  padding: j(16);
-  border-radius: j(20);
-  width: j(350);
-  background-color: #fff;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
 }
