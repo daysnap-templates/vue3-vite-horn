@@ -69,4 +69,10 @@ npm install amfe-flexible -S
 
 ## 问题
 
-- https://github.com/vuejs/router/issues/626
+```
+// <transition> 和 keep-alive 内的嵌套路由的行为与 vue2 不同
+// https://github.com/vuejs/router/issues/983
+
+// https://github.com/vuejs/core/issues/3950
+// https://github.com/vuejs/router/issues/626
+```

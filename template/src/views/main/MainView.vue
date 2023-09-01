@@ -24,7 +24,7 @@
   import { useKeepAliveByPosition } from '@daysnap/horn-use'
 
   // 支持 keep-alive
-  useKeepAliveByPosition({ name: 'MainView' })
+  // useKeepAliveByPosition({ name: 'MainView' })
 
   const router = useRouter()
   const computedTabbarRoutes = computed(() => {
