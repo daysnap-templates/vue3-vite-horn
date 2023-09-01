@@ -15,7 +15,7 @@ export function setupGuards(router: Router) {
     }
     // 未登录进入到需要登录的页面，直接跳转取登录
     if (!isLogin && requiresAuth === 1) {
-      return { path: '/login', replace: true }
+      return { path: '/signin' }
     }
   })
 

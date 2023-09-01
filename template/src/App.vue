@@ -6,6 +6,9 @@
       </KeepAlive>
     </Transition>
   </RouterView>
+  <DebugPanel>
+    <p>includes: {{ includes }}</p>
+  </DebugPanel>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +28,5 @@
     @extend %h100;
     @extend %bsb;
     @extend %oya;
-    background-color: red;
   }
 </style>
