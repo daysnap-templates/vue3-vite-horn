@@ -14,7 +14,7 @@
         :to="{ path: item.path, query: $route.query }"
         :icon="index === current ? item.meta?.iconSelected : item.meta?.icon"
       >
-        {{ item.meta?.title }}
+        {{ item.meta?.title }} {{ current }}
       </VanTabbarItem>
     </VanTabbar>
   </div>
@@ -35,6 +35,8 @@
 
   const route = useRoute()
   const current = ref(computedTabbarRoutes.value.findIndex((item) => item.path === route.path))
+
+  console.log('main-create')
 </script>
 
 <style lang="scss" scoped>

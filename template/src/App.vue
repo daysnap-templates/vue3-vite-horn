@@ -1,9 +1,9 @@
 <template>
   <RouterView v-slot="{ Component }">
     <Transition :name="transitionName">
-      <!-- <KeepAlive max="10" :include="includes"> -->
-      <Component class="view-wrap" :is="Component" />
-      <!-- </KeepAlive> -->
+      <KeepAlive max="10" :include="includes">
+        <Component class="view-wrap" :is="Component" />
+      </KeepAlive>
     </Transition>
   </RouterView>
   <DebugPanel>

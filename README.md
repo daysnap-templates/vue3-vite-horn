@@ -64,3 +64,9 @@ npm install axios -S
 npm install amfe-flexible -S
 
 ```
+
+
+
+## 问题
+
+- https://github.com/vuejs/router/issues/626
