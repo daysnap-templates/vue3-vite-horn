@@ -2,8 +2,8 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 export interface UseTransitionNameOptions {
-  enterClass: string
-  leaveClass: string
+  enterClass?: string
+  leaveClass?: string
   deep?: boolean
 }
 
@@ -27,7 +27,7 @@ const set = (state: UseTransitionNameState) => {
 }
 
 export function useTransitionName(options: UseTransitionNameOptions) {
-  const { enterClass, leaveClass, deep } = options
+  const { deep } = options
   const name = ref('')
   const route = useRoute()
 
@@ -39,11 +39,11 @@ export function useTransitionName(options: UseTransitionNameOptions) {
 
       if (prevState && prevState.fullPath !== to.fullPath) {
         if (position >= prevState.position) {
-          // 前进
-          name.value = to.query.transition === 'disabled' ? '' : enterClass
+          const { enterClass } = Object.assign({}, options, to.meta, to.query)
+          name.value = enterClass ?? ''
         } else {
-          // 回退
-          name.value = from.query.transition === 'disabled' ? '' : leaveClass
+          const { leaveClass } = Object.assign({}, options, from.meta, from.query)
+          name.value = leaveClass ?? ''
         }
       } else {
         name.value = ''

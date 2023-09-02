@@ -29,7 +29,8 @@ export default [
     meta: {
       title: '登录',
       requiresAuth: -1,
-      transition: { enterClass: 'popup-up', leaveClass: 'popup-down' },
+      enterClass: 'popup-up',
+      leaveClass: 'popup-down',
     },
   },
   {

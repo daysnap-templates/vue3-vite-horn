@@ -19,6 +19,8 @@
   const { includes } = useKeepAliveByPosition(false)
 
   const transitionName = useTransitionName({
+    // enterClass: 'slide-plus-left',
+    // leaveClass: 'slide-plus-right',
     enterClass: 'slide-left',
     leaveClass: 'slide-right',
   })

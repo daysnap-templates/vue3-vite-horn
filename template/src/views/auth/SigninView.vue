@@ -1,6 +1,7 @@
 <template>
   <div class="signin-wrap">
     <p>登录页面</p>
+    <RouterLink to="/signup">去注册</RouterLink>
   </div>
 </template>
 
