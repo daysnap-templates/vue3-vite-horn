@@ -1,0 +1,34 @@
+.popup-up-enter-active,
+.popup-up-leave-active,
+.popup-down-enter-active,
+.popup-down-leave-active {
+  transition: transform 0.3s;
+  position: absolute !important;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.popup-up-leave-active,
+.popup-down-enter-active{
+  z-index: 1;
+}
+
+.popup-up-enter-active,
+.popup-down-leave-active{
+  z-index: 10;
+}
+
+.popup-up-enter-from,
+.popup-down-leave-to{
+  transform: translateY(100%);
+}
+
+.popup-up-leave-to,
+.popup-down-enter-from{
+  transform: scale(.9);
+}
