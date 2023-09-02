@@ -26,7 +26,7 @@ export default [
     path: '/signin',
     name: 'SigninView',
     component: () => import('@/views/auth/SigninView.vue'),
-    meta: { title: '登录', requiresAuth: -1 },
+    meta: { title: '登录', requiresAuth: -1, enterClass: 'popup-up', leaveClass: 'popup-down' },
   },
   {
     path: '/signup',

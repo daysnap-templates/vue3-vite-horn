@@ -8,19 +8,19 @@
   </RouterView>
   <DebugPanel>
     <p>includes: {{ includes }}</p>
+    <p>transitionName: {{ transitionName }}</p>
   </DebugPanel>
 </template>
 
 <script setup lang="ts">
   import { useKeepAliveByPosition, useTransitionNameByPosition } from '@daysnap/horn-use'
+  import { useTransitionName } from '@/hooks'
 
   const { includes } = useKeepAliveByPosition(false)
 
-  const transitionName = useTransitionNameByPosition({
-    // enterClass: 'slide-left',
-    // leaveClass: 'slide-right',
-    enterClass: 'popup-up',
-    leaveClass: 'popup-down',
+  const transitionName = useTransitionName({
+    enterClass: 'slide-left',
+    leaveClass: 'slide-right',
   })
 </script>
 
