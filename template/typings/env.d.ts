@@ -13,8 +13,10 @@ declare module 'vue-router' {
     icon?: string
 
     // 动画
-    enterClass?: string
-    leaveClass?: string
+    transition?: {
+      enterClass?: string
+      leaveClass?: string
+    }
   }
 }
 

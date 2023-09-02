@@ -39,8 +39,10 @@ export function useTransitionName(options: UseTransitionNameOptions) {
 
       if (prevState && prevState.fullPath !== to.fullPath) {
         if (position >= prevState.position) {
+          // 前进
           name.value = to.query.transition === 'disabled' ? '' : enterClass
         } else {
+          // 回退
           name.value = from.query.transition === 'disabled' ? '' : leaveClass
         }
       } else {
