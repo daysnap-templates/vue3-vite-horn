@@ -11,10 +11,6 @@ declare module 'vue-router' {
     // tabbar icon
     iconSelected?: string
     icon?: string
-
-    // 动画
-    enterClass?: string
-    leaveClass?: string
   }
 }
 

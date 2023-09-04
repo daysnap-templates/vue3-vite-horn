@@ -13,16 +13,14 @@
 </template>
 
 <script setup lang="ts">
-  import { useKeepAliveByPosition, useTransitionNameByPosition } from '@daysnap/horn-use'
-  import { useTransitionName } from '@/hooks'
+  import { useKeepAliveByPosition } from '@daysnap/horn-use'
+  import { useTransitionName } from '@daysnap/vue-use'
 
   const { includes } = useKeepAliveByPosition(false)
 
   const transitionName = useTransitionName({
     enterClass: 'slide-plus-left',
     leaveClass: 'slide-plus-right',
-    // enterClass: 'slide-left',
-    // leaveClass: 'slide-right',
   })
 </script>
 

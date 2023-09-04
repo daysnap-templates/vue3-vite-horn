@@ -16,6 +16,7 @@
     "@daysnap/horn-ui": "^0.0.28",
     "@daysnap/horn-use": "^0.0.16",
     "@daysnap/utils": "^0.0.62",
+    "@daysnap/vue-use": "^0.0.1",
     "amfe-flexible": "^2.2.1",
     "axios": "^1.5.0",
     "pinia": "^2.1.6",
