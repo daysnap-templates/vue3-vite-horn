@@ -1,9 +1,11 @@
 <template>
   <div class="main-wrap">
     <RouterView v-slot="{ Component }">
-      <KeepAlive>
-        <Component class="main-inner" :is="Component" />
-      </KeepAlive>
+      <Transition name="fix">
+        <KeepAlive>
+          <Component class="main-inner" :is="Component" />
+        </KeepAlive>
+      </Transition>
     </RouterView>
 
     <VanTabbar fixed route placeholder v-model="current">
@@ -24,7 +26,7 @@
   import { useKeepAliveByPosition } from '@daysnap/horn-use'
 
   // 支持 keep-alive
-  // useKeepAliveByPosition({ name: 'MainView' })
+  useKeepAliveByPosition({ name: 'MainView' })
 
   const router = useRouter()
   const computedTabbarRoutes = computed(() => {

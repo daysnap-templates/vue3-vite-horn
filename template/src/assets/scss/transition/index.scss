@@ -1,3 +1,13 @@
 @import 'slide-plus.scss';
 @import 'popup.scss';
 @import 'transition.scss';
+
+.fix-enter-active,
+.fix-leave-active {
+  transition: opacity 0.4s;
+}
+
+.fix-enter-from,
+.fix-leave-to {
+  opacity: 1;
+}
