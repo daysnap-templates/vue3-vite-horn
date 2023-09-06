@@ -1,4 +1,4 @@
-import type { Field } from '@daysnap/banana'
+import { type Field } from '@daysnap/banana'
 
 export interface FormMetadataField extends Field {
   label?: string

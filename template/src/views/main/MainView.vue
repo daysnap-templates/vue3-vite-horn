@@ -1,7 +1,7 @@
 <template>
   <div class="main-wrap">
     <RouterView v-slot="{ Component }">
-      <Transition name="fix">
+      <Transition :name="computedName" mode="out-in">
         <KeepAlive>
           <Component class="main-inner" :is="Component" />
         </KeepAlive>
@@ -37,6 +37,10 @@
 
   const route = useRoute()
   const current = ref(computedTabbarRoutes.value.findIndex((item) => item.path === route.path))
+  const computedName = computed(() => {
+    const isContain = computedTabbarRoutes.value.find((item) => item.path === route.path)
+    return isContain ? '' : 'fix'
+  })
 
   console.log('main-create')
 </script>
