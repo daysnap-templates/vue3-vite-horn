@@ -34,6 +34,6 @@
     @extend %h100;
     @extend %bsb;
     @extend %oya;
-    background-color: #fff;
+    background-color: #f2f3f4;
   }
 </style>

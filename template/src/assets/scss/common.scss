@@ -13,6 +13,10 @@ body {
   height: 100vh;
 }
 
+.c-h10{
+  height: j(10);
+}
+
 .c-pr {
   @extend %pr;
 }

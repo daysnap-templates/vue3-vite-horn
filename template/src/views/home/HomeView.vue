@@ -1,6 +1,6 @@
 <template>
   <main>
-    <p>1</p>
+    <RouterLink to="/hooks">hooks</RouterLink>
   </main>
 </template>
 <script setup lang="ts"></script>
