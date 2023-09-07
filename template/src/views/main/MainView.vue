@@ -16,7 +16,7 @@
         :to="{ path: item.path, query: $route.query }"
         :icon="index === current ? item.meta?.iconSelected : item.meta?.icon"
       >
-        {{ item.meta?.title }} {{ current }}
+        {{ item.meta?.title }}
       </VanTabbarItem>
     </VanTabbar>
   </div>
@@ -41,8 +41,6 @@
     const isContain = computedTabbarRoutes.value.find((item) => item.path === route.path)
     return isContain ? '' : 'fix'
   })
-
-  console.log('main-create')
 </script>
 
 <style lang="scss" scoped>

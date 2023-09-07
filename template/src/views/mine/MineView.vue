@@ -9,6 +9,4 @@
 
 <script setup lang="ts">
   const name = ref('')
-
-  console.log('mine create')
 </script>
