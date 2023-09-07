@@ -4,4 +4,8 @@
   </HorView>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useTrigger } from '@/hooks'
+
+  // const {} = useTrigger()
+</script>
