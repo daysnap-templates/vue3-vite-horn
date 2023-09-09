@@ -13,8 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useKeepAliveByPosition } from '@daysnap/horn-use'
-  import { useTransitionName } from '@daysnap/vue-use'
+  import { useTransitionName, useKeepAliveByPosition } from '@daysnap/vue-use'
 
   const { includes } = useKeepAliveByPosition(false)
 

@@ -53,7 +53,7 @@ npm install postcss-pxtorem @types/postcss-pxtorem -D
 
 npm install @daysnap/banana -S
 npm install @daysnap/horn-ui -S
-npm install @daysnap/horn-use -S
+npm install @daysnap/vue-use -S
 npm install @daysnap/utils -S
 
 npm install vant -S

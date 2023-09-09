@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useKeepAliveByPosition } from '@daysnap/horn-use'
+  import { useKeepAliveByPosition } from '@daysnap/vue-use'
 
   // 支持 keep-alive
   useKeepAliveByPosition({ name: 'MainView' })
