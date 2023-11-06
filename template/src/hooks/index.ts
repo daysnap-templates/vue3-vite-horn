@@ -1,3 +1,4 @@
+export * from './useKeepAlive'
 export * from './usePaging'
 export * from './useState'
 export * from './useTransitionName'
