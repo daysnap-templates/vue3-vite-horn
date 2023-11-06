@@ -12,6 +12,11 @@ declare module 'vue-router' {
     iconSelected?: string
     icon?: string
   }
+
+  interface _RouteRecordBase {
+    // 排序
+    sort?: number
+  }
 }
 
 // 全局 API
